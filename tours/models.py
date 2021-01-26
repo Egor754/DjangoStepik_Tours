@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse_lazy
 
 
 class Tours(models.Model):
@@ -12,6 +13,9 @@ class Tours(models.Model):
     date = models.CharField(max_length=50, verbose_name='Дата')
     departure = models.ForeignKey('Depart', on_delete=models.PROTECT, null=True, verbose_name='Отправление')
 
+    def get_absolute_url(self):
+        return reverse_lazy('tour', kwargs={"id": self.pk})
+
     def __str__(self):
         return self.title
 
@@ -23,6 +27,9 @@ class Tours(models.Model):
 class Depart(models.Model):
     title = models.CharField(verbose_name='Отправление', max_length=50)
     ru_departure = models.CharField(max_length=50, verbose_name='Отправление_RU', null=True)
+
+    def get_absolute_url(self):
+        return reverse_lazy('departure', kwargs={"departure": self.title})
 
     def __str__(self):
         return self.title

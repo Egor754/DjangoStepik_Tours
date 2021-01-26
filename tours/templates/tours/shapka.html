@@ -11,7 +11,8 @@
             <ul class="navbar-nav">
                 {% for item in departure_shapka %}
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'departure' item.title %}">{{ item.ru_departure|title }}</a>
+                    <a class="nav-link" href="{{ item.get_absolute_url }}"
+                    >{{ item.ru_departure|title }}</a>
                 </li>
                 {% endfor %}
             </ul>
