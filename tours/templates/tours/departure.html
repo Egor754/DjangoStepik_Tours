@@ -7,16 +7,16 @@
     <!-- CARDS -->
     <div class="row mt-5">
 <!--      depart-->
-      {% for item in tours %}
+      {% for tour in tours %}
       <div class="col-4">
         <div class="card mb-4">
             <div class="embed-responsive embed-responsive-16by9">
-          <img src="{{ item.picture }}" class="card-img-top embed-responsive-item" alt="" >
+          <img src="{{ tour.picture }}" class="card-img-top embed-responsive-item" alt="" >
             </div>
           <div class="card-body">
-            <h2 class="h5 card-title">{{ item.title }}</h2>
-            <p class="card-text">{{ item.description|truncatechars:94 }}</p>
-            <a href="{{ item.get_absolute_url }}" class="btn btn-sm btn-primary">Подробнее</a>
+            <h2 class="h5 card-title">{{ tour.title }}</h2>
+            <p class="card-text">{{ tour.description|truncatechars:94 }}</p>
+            <a href="{{ tour.get_absolute_url }}" class="btn btn-sm btn-primary">Подробнее</a>
           </div>
         </div>
       </div>

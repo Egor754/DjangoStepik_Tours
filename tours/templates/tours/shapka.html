@@ -9,10 +9,10 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
-                {% for item in departure_shapka %}
+                {% for ru_departure in departure_shapka %}
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ item.get_absolute_url }}"
-                    >{{ item.ru_departure|title }}</a>
+                    <a class="nav-link" href="{{ ru_departure.get_absolute_url }}"
+                    >{{ ru_departure.ru_departure|title }}</a>
                 </li>
                 {% endfor %}
             </ul>
