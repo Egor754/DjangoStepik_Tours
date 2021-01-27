@@ -14,7 +14,7 @@ class Tours(models.Model):
     departure = models.ForeignKey('Depart', on_delete=models.PROTECT, null=True, verbose_name='Отправление')
 
     def get_absolute_url(self):
-        return reverse_lazy('tour', kwargs={"pk": self.pk})
+        return reverse_lazy('tour', kwargs={"id": self.pk})
 
     def __str__(self):
         return self.title

@@ -24,8 +24,8 @@ def departure_view(request, departure):
                   {'tours': tours, 'departure_ru': departure_ru, 'max_min_price': max_min_price})
 
 
-def tour_view(request, pk):
-    tour = Tours.objects.select_related("departure").get(pk=pk)
+def tour_view(request, id):
+    tour = Tours.objects.select_related("departure").get(pk=id)
     departure_ru = tour.departure.ru_departure
     return render(request, 'tours/tour.html', {'tour': tour, 'departure_ru': departure_ru})
 
