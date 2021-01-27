@@ -10,7 +10,7 @@
       {% for item in tours %}
       <div class="col-4">
         <div class="card mb-4">
-          <img src="{{ item.picture }}" class="card-img-top img-fluid" alt="" >
+          <img src="{{ item.picture }}" class="card-img-top embed-responsive-item" alt="" >
           <div class="card-body">
             <h2 class="h5 card-title">{{ item.title }}</h2>
             <p class="card-text">{{ item.description|truncatechars:94 }}</p>
