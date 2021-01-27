@@ -6,7 +6,7 @@ from django.db.models import Max, Min
 from .models import Tours, Depart
 
 
-def MainView(request):
+def main_view(request):
     tours = Tours.objects.all()
     random_tours = []
     while len(random_tours) != 6:
@@ -16,7 +16,7 @@ def MainView(request):
     return render(request, 'tours/index.html', {'random_tours': random_tours})
 
 
-def DepartureView(request, departure):
+def departure_view(request, departure):
     tours = Tours.objects.select_related("departure").filter(departure__title=departure)
     max_min_price = tours.aggregate(Max('price'), Min('price'), Max('nights'), Min('nights'))
     departure_ru = Depart.objects.get(title=departure).ru_departure
@@ -24,16 +24,16 @@ def DepartureView(request, departure):
                   {'tours': tours, 'departure_ru': departure_ru, 'max_min_price': max_min_price})
 
 
-def TourView(request, id):
+def tour_view(request, id):
     tour = Tours.objects.select_related("departure").get(id=id)
     departure_ru = tour.departure.ru_departure
     return render(request, 'tours/tour.html', {'tour': tour, 'departure_ru': departure_ru})
 
 
-def pageNotFound(request, exception):
+def page_not_found(request, exception):
     return HttpResponseNotFound('<h1>Страница не найдена</h1>')
 
 
-def ServerError(request):
+def server_error(request):
     return HttpResponseServerError('<h1>Извините, произошел '
                                    'внутрисистемный сбой</h1>')
