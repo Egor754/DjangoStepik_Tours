@@ -18,16 +18,29 @@ def main_view(request):
 
 def departure_view(request, departure):
     tours = Tours.objects.select_related("departure").filter(departure__title=departure)
-    max_min_price = tours.aggregate(Max('price'), Min('price'), Max('nights'), Min('nights'))
+    max_min_price = tours.aggregate(
+        Max('price'),
+        Min('price'),
+        Max('nights'),
+        Min('nights'),
+    )
     departure_ru = Depart.objects.get(title=departure).ru_departure
     return render(request, 'tours/departure.html',
-                  {'tours': tours, 'departure_ru': departure_ru, 'max_min_price': max_min_price})
+                  {
+                      'tours': tours,
+                      'departure_ru': departure_ru,
+                      'max_min_price': max_min_price,
+                  })
 
 
 def tour_view(request, id):
     tour = Tours.objects.select_related("departure").get(pk=id)
     departure_ru = tour.departure.ru_departure
-    return render(request, 'tours/tour.html', {'tour': tour, 'departure_ru': departure_ru})
+    return render(request, 'tours/tour.html',
+                  {
+                      'tour': tour,
+                      'departure_ru': departure_ru,
+                  })
 
 
 def page_not_found(request, exception):
